@@ -199,11 +199,11 @@ curve ContourExtr(IplImage* bnr,IplImage* imcontour)
 			if (ori_prs == 0 || ori == 4)
 				lin = 1;
 			else
-				lin = ori_prs <= 4 && ori <= 4;
+				lin = (ori + 4) % 8 > ori_prs;
 			if (ori_prs == 4 || ori == 0)
 				rin = 1;
 			else
-				rin = (!ori_prs || ori_prs >= 4) && (!ori || ori >= 4);
+				rin = ori > (ori_prs + 4) % 8;
 			horid = lin ^ rin;
 			if (at(img, p_prs) == 255)
 				assign(img, p_prs, (uchar)(mark + 128 * horid));
